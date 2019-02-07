@@ -7,46 +7,14 @@ const Board = ({
   addLetter, autofill, definition, letters, longest, timer, reset, round, startTimer, uniques,
 }) => (
   <div>
-    <div id="timer">
-      <Timer timer={timer} startTimer={startTimer} />
-    </div>
-    <div
-      className="button"
-      onClick={reset}
-      onKeyDown={reset}
-      role="button"
-      tabIndex={0}
-    >
-      <h1>
-        New Game
-      </h1>
-    </div>
     <table id="board">
       <tr>
-        {['', '', '', '', '', '', '', '', ''].map((letter, i) => (
+        {letters.map((letter, i) => (
           <td>
             {letters[i]}
           </td>))}
       </tr>
     </table>
-    <div id="container">
-      { round === 'post' && <Scoreboard longest={longest} uniques={uniques} /> }
-      <div className="letterButtonContainer">
-        <h2 className="letterButton" id="vowel" onClick={addLetter} onKeyPress={addLetter}>
-          Vowel
-        </h2>
-      </div>
-      <div className="letterButtonContainer">
-        <h2  className="letterButton" id="consonant" onClick={addLetter} onKeyPress={addLetter}>
-          Consonant
-        </h2>
-      </div>
-      <div className="letterButtonContainer">
-        <h2  className="letterButton" id="autofill" onClick={autofill} onKeyPress={autofill}>
-          Autofill
-        </h2>
-      </div>
-    </div>
     <div id="defContainer">
       <span id="word">{definition.word} </span>
       <span id="pos">{definition.pos} </span>

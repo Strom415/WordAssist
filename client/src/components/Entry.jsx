@@ -14,7 +14,7 @@ const Entry = ({
         onChange={handleChange}
       />
       <button type="submit">
-        Add
+        Get
       </button>
     </form>
     <div className="allEntries">

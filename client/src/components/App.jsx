@@ -9,13 +9,13 @@ class App extends React.Component {
     super(props);
     this.state = {
       anagrams: [],
-      definition: { word: 'Add 9 letters by clicking the vowel & consonant buttons above. Click Start to begin the round' },
+      definition: { word: 'Type your word and click Get to see all possible anagrams' },
       entry: '',
       entries: [],
       letters: [],
       longest: '',
       round: 'pre',
-      timer: 45,
+      timer: 1,
       uniques: 0,
     };
 
@@ -66,17 +66,17 @@ class App extends React.Component {
 
   handleChange(e) {
     e.preventDefault();
-    this.setState({ entry: e.target.value });
+    this.setState({ entry: e.target.value, letters: [...e.target.value] });
   }
 
   addEntry(e) {
-    const { entries, entry, round } = this.state;
-    if (round === 'active') {
-      this.setState({
-        entries: [{ word: entry.toLowerCase(), class: 'entry' }].concat(entries),
-        entry: '',
-      });
-    }
+    const letters = [...this.state.entry];
+
+    this.setState({
+      definition: { word: 'click a word for its definition' },
+      letters,
+      entry: '',
+    }, this.getAnagrams());
     e.preventDefault();
   }
 
@@ -157,11 +157,10 @@ class App extends React.Component {
             entry={entry}
             handleChange={this.handleChange}
           />
-          { round === 'post' && (
-            <List
-              anagrams={anagrams}
-              getDefinition={this.getDefinition}
-            />) }
+          <List
+            anagrams={anagrams}
+            getDefinition={this.getDefinition}
+          />
         </div>
       </div>
     );
