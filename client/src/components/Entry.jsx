@@ -10,7 +10,7 @@ const Entry = ({
         id="input"
         type="text"
         autoComplete="off"
-        value={entry} 
+        value={entry.slice(0, 9)} 
         onChange={handleChange}
       />
       <button type="submit">

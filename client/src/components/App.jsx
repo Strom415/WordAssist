@@ -9,7 +9,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       anagrams: [],
-      definition: { word: 'Type your word and click Get to see all possible anagrams' },
+      definition: { word: 'Type your letters and click Get to see all possible anagrams' },
       entry: '',
       entries: [],
       letters: [],
@@ -66,15 +66,12 @@ class App extends React.Component {
 
   handleChange(e) {
     e.preventDefault();
-    this.setState({ entry: e.target.value, letters: [...e.target.value] });
+    this.setState({ entry: e.target.value, letters: [...e.target.value].slice(0, 9) });
   }
 
   addEntry(e) {
-    const letters = [...this.state.entry];
-
     this.setState({
       definition: { word: 'click a word for its definition' },
-      letters,
       entry: '',
     }, this.getAnagrams());
     e.preventDefault();
